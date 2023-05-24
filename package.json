@@ -1,0 +1,51 @@
+{
+  "name": "express-lambda-proxy",
+  "private": "true",
+  "files": [
+    "*.mjs",
+    "*.json"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "version": "1.0.0",
+  "description": "Express Lambda Proxy",
+  "main": "index.js",
+  "scripts": {
+    "start:prod": "node --require dotenv/config ./src/index.mjs",
+    "start:dev": "cross-env NODE_ENV=development node --require dotenv/config ./src/index.mjs",
+    "start:dist": "cross-env NODE_ENV=development node --require dotenv/config ./dist/index/index.mjs",
+    "test": "node --test --test-reporter=spec",
+    "lint": "eslint -c ./.eslintrc.json \"./src/**/*.mjs\"",
+    "build": "rm -rf dist && node build.js",
+    "package": "cd dist && for f in * ; do ([ -d \"$f\" ] && cd $f && zip ../$f.zip *) ; done"
+  },
+  "author": "Janos Fekete",
+  "license": "GNU",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "esbuild": "0.17.18",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.1",
+    "express-winston": "^4.2.0",
+    "helmet": "^6.1.5",
+    "hpp": "^0.2.3",
+    "http-proxy-middleware": "^2.0.6",
+    "response-time": "^2.3.2",
+    "serverless-http": "^3.2.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "2.8.8"
+  }
+}
